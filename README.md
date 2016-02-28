@@ -19,7 +19,7 @@ Each implementation is modeled off of an Embedding table -> LSTM ->
 slice off last element -> Fully Connected -> Softmax -> categorical
 cross entropy.
 
-The models have 10k word vocab, with the same size hidden and embedding table.
+The models have 10k word vocab, with the same size hidden and embedding table dimensions.
 All classification is 5 way.
 
 The numbers represent 1 forward pass, 1 backward pass, and a SGD
