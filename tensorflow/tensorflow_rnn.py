@@ -1,3 +1,5 @@
+# modified version from
+# https://www.reddit.com/r/MachineLearning/comments/3sok8k/tensorflow_basic_rnn_example_with_variable_length/
 import tensorflow as tf
 from tensorflow.models.rnn import rnn
 from tensorflow.models.rnn.rnn_cell import BasicLSTMCell, LSTMCell
@@ -6,10 +8,12 @@ import time
 
 if __name__ == '__main__':
     np.random.seed(1)
-    size = 100
     batch_size= 128
     n_steps = 64
-    seq_width = 128
+    #seq_width = 128
+    #seq_width = 256
+    #seq_width = 512
+    seq_width = 1024
     n_vocab = 10000
     n_class = 5
 
@@ -28,7 +32,7 @@ if __name__ == '__main__':
 
     inputs = [tf.reshape(i, (batch_size, seq_width)) for i in tf.split(0, n_steps, embed_input)]
     #inputs for rnn needs to be a list, each item being a timestep.
-    #we need to split our input into each timestep, and reshape it because split keeps dims by default  
+    #we need to split our input into each timestep, and reshape it because split keeps dims by default
 
     #cell = LSTMCell(seq_width, seq_width, initializer=initializer)
     cell = LSTMCell(seq_width, seq_width, initializer=initializer)
@@ -41,7 +45,9 @@ if __name__ == '__main__':
 
     iop = tf.initialize_all_variables()
     #create initialize op, this needs to be run by the session!
-    session = tf.Session()
+    #session = tf.Session()
+    session = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+
     session.run(iop)
       #actually initialize, if you don't do this you get errors about uninitialized stuff
 
@@ -58,6 +64,8 @@ if __name__ == '__main__':
         outs = session.run(opt, feed_dict=feed)
 
     t_start = time.time()
-    for i in range(30):
+    for i in range(50):
       outs = session.run(opt, feed_dict=feed)
-    print "10 steps took:", time.time() - t_start
+    tdiff = time.time() - t_start
+    print "50 steps took:", tdiff
+    print "per step:", tdiff / 50.

@@ -1,3 +1,6 @@
+# modified version from
+# http://deeplearning.net/tutorial/lstm.html
+
 import six.moves.cPickle as pickle
 
 from collections import OrderedDict
@@ -22,8 +25,13 @@ def floatX(data):
 def param(shape, name):
     return theano.shared(floatX(np.random.randn(*shape)*0.2), name=name)
 
-proj_dim = 128
-embed_dim = 128
+#proj_dim = 128
+#proj_dim = 256
+#proj_dim = 512
+proj_dim = 1024
+embed_dim = proj_dim
+batch_size = 128
+
 n_class = 5
 n_vocab = 10000
 
@@ -117,15 +125,16 @@ def benchmark_lstm():
     print "done, took:", time.time() - t_start
     t_start = time.time()
 
-    x_val = np.random.randint(0, n_vocab, size=(64, 128))
-    y_val = np.random.randint(0, n_class, size=(128,))
-    mask_val = np.ones((64, 128), dtype="float32")
-    for i in range(30):
+    x_val = np.random.randint(0, n_vocab, size=(64, batch_size))
+    y_val = np.random.randint(0, n_class, size=(batch_size ,))
+    mask_val = np.ones((64, batch_size), dtype="float32")
+    for i in range(50):
         print i
         cost_val = f_update_shared(x_val, mask_val, y_val)
-    print "done with 10 loop, took:", time.time() - t_start
+    tdiff = time.time() - t_start
+    print "done with 50 loop, took:", tdiff
+    print tdiff / 50.
 
 if __name__ == '__main__':
     benchmark_lstm()
-    import ipdb; ipdb.set_trace()
 
