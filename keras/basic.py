@@ -18,7 +18,8 @@ batch_size = 128
 #n_hidden = 128
 # n_hidden = 256
 #n_hidden = 512
-n_hidden = 1024
+#n_hidden = 1024
+#n_hidden = 1024
 
 print('Loading data...')
 (X_train, y_train), (X_test, y_test) = imdb.load_data(nb_words=max_features,

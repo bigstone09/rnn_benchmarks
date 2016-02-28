@@ -28,7 +28,8 @@ def param(shape, name):
 #proj_dim = 128
 #proj_dim = 256
 #proj_dim = 512
-proj_dim = 1024
+#proj_dim = 1024
+proj_dim = 2048
 embed_dim = proj_dim
 batch_size = 128
 

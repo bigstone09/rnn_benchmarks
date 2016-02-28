@@ -13,7 +13,8 @@ if __name__ == '__main__':
     #seq_width = 128
     #seq_width = 256
     #seq_width = 512
-    seq_width = 1024
+    #seq_width = 1024
+    seq_width = 2048
     n_vocab = 10000
     n_class = 5
 
