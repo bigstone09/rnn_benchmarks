@@ -32,6 +32,6 @@ The following numbers are on a single 980. All numbers are in ms per batch.
 | Theano                       |    27.1    |       40.0 |      075.8 |           168.4 |       526.7 |
 | Tensorflow(7.1)              |    72.9    |       75.1 |      089.9 |           186.5 |  out of mem |
 | mxnet                        |   267.2    |       90.2 |      950.0 |      Out of mem |  didn't run |
-| torch (element-research/rnn) |    74.2    |       79.6 |      094.7 |           204.3 |  out of mem |
+| torch (element-research/rnn) |    74.2    |       79.6 |      94.7 |           204.3 |  out of mem |
 | keras (theano)               |    70.3    |       97.4 |      145.6 | recursion depth |  didn't run |
 | keras (tensorflow)           |   118.8    |      143.8 |      214.6 |           443.3 |  didn't run |
